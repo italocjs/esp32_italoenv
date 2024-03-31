@@ -1,0 +1,42 @@
+name: SimovaTrack Testing
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+    types: [ opened, edited ,synchronize]
+jobs:
+  platformio-build:
+    runs-on: ubuntu-latest
+    container: italocjs/track_env:latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.platformio/.cache
+          key: ${{ runner.os }}-pio    
+      - uses: actions/checkout@v2
+
+      - name: build native
+        working-directory: ./firmware
+        run: pio run -e native
+        
+      - name: execute native code
+        working-directory: ./firmware
+        run: pio run -e native -t exec
+
+      - name: test native
+        working-directory: ./firmware
+        run: pio test -e native
+
+      - name: build esp32 embedded code
+        working-directory: ./firmware
+        run: pio run -e esp32dev
+
+      - name: test esp32 embedded code
+        working-directory: ./firmware
+        run: pio test -e esp32dev
