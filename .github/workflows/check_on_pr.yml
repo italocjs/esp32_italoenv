@@ -1,4 +1,4 @@
-name: check_on_pr
+name: Native and embedded remote testing
 
 on:
   push:
