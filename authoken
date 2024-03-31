@@ -1,0 +1,1 @@
+   PLATFORMIO_AUTH_TOKEN=n6VksnHCqV5fa5NrjtW4mIh7nmSep5iwapOsjo+cZpqUoo6fiHTUZZ+haNudlqBejnJkZrzTjZiFd89ia6RlrmjDqFuSc2aa pio remote --agent raspberrypi test -e esp32dev

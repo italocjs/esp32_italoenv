@@ -1,0 +1,51 @@
+name: check_on_pr
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+    types: [ opened, edited, synchronize]
+
+jobs:
+  native_tasks:
+    name: Native environment checks
+    runs-on: ubuntu-latest
+    container: italocjs/track_env:latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            /root/.platformio/.cache
+          key: ${{ runner.os }}-pio   
+
+      - name: Native build
+        run: pio run -e native
+
+      - name: Native test
+        run: pio test -e native
+
+  esp32dev_tasks:
+    name: ESP32DEV environment checks
+    runs-on: ubuntu-latest
+    container: italocjs/track_env:latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            /root/.platformio/.cache
+          key: ${{ runner.os }}-pio   
+
+      - name: esp32dev remote test
+        env: 
+          PLATFORMIO_AUTH_TOKEN: ${{ secrets.PLATFORMIO_AUTH_TOKEN }}
+          ESP32: true
+        run: pio remote --agent raspberrypi test -e esp32dev --upload-port /dev/ttyUSB0
+
+      - name: esp32dev build and flash remote
+        env: 
+          PLATFORMIO_AUTH_TOKEN: ${{ secrets.PLATFORMIO_AUTH_TOKEN }}
+          ESP32: true
+        run: pio remote --agent raspberrypi run -e esp32dev -t upload --upload-port /dev/ttyUSB0
