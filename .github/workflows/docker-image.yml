@@ -19,7 +19,6 @@ jobs:
     - name: Create and move files to doxygen folder
       run: |
         mkdir -p doxygen
-        #cp -r ${{ github.workspace }}/* doxygen/
         git config --local user.email "gustavo.neves@simova.com.br"
         git config --local user.name "GitHub Actions"
         git add .
