@@ -27,6 +27,7 @@ jobs:
       
     - name: Generate Documentation
       run: |
+        cp ${{ github.workspace }}/Doxyfile doxygen/
         doxygen ${{ github.workspace }}/doxygen/Doxyfile
         git add .
         git commit -m "Create doxygen folder and move files"
