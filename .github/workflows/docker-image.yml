@@ -1,0 +1,36 @@
+name: Generate Doxygen Documentation
+
+on:
+  push:
+    branches-ignore:
+      - '*'
+  pull_request:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # Cria a pasta 'doxygen' se não existir e move os arquivos lá dentro
+    - name: Create and move files to doxygen folder
+      run: |
+        mkdir -p doxygen
+        git config --local user.email "gustavo.neves@simova.com.br"
+        git config --local user.name "GitHub Actions"
+        git add .
+        git commit -m "Create doxygen folder and move files"
+        git push https://github.com/${{ github.repository }}.git HEAD:${{ github.ref }} --token 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
+
+    - name: Install Doxygen
+      run: sudo apt-get update && sudo apt-get install -y doxygen
+      
+    - name: Generate Documentation
+      run: doxygen ${{ github.workspace }}/doxygen/Doxyfile
+      
+    # Opcionalmente, você pode adicionar um passo para remover a pasta doxygen após a conclusão
+    # - name: Cleanup doxygen folder
+    #   run: rm -rf doxygen
