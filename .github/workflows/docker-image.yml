@@ -31,8 +31,9 @@ jobs:
         doxygen ${{ github.workspace }}/doxygen/Doxyfile
         git add .
         git commit -m "Create doxygen folder and move files"
-        git push https://github.com/${{ github.repository }}.git HEAD:${{ github.ref }} --token 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
-
+        git push https://github.com/${{ github.repository }}.git HEAD:${{ github.ref }} 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     # Opcionalmente, você pode adicionar um passo para remover a pasta doxygen após a conclusão
     # - name: Cleanup doxygen folder
