@@ -8,3 +8,4 @@
 
 .pio/
 .vscode/
+doxygen_out/
