@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions, it can run automatically, but i will use it in the same file as the other tests to make sure i onpy up
+
+name: make_doxygen
+
+on:
+  push:
+    branches: [ main ] # only run if pushed to main
+
+permissions:
+    contents: write # needed for the Doxygen action
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+        
+    - name: Doxygen Action
+      uses: mattnotmitt/doxygen-action@v1.1.0
+      with:
+        # Path to Doxyfile
+        doxyfile-path: "Doxyfile" # default is ./Doxyfile
+        working-directory: "app/" # default is .
+    
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./app/doxygen_out/html/
