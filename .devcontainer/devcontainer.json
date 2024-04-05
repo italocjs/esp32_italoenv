@@ -1,20 +1,24 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
 {
-	"name": "Existing Dockerfile",
-	"build": {
-		// Sets the run context to one level up instead of the .devcontainer folder.
-		"context": "..",
-		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-		"dockerfile": "../Dockerfile"
-	},
+    "name": "Existing Dockerfile",
+    "build": {
+        "context": "..",
+        "dockerfile": "../Dockerfile"
+    },
     "customizations": {
         "vscode": {
             "extensions": [
-				"spencerwmiles.vscode-task-buttons"
-			]
+                "spencerwmiles.vscode-task-buttons"
+            ]
         }
-    }
+    },
+    "mounts": [
+        "source=${localWorkspaceFolder}/.platformio,target=/root/.platformio,type=bind",
+        "source=${localWorkspaceFolder},target=/app,type=bind"
+    ]
+    // The rest of your configuration...
+
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},

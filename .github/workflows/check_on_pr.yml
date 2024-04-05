@@ -1,11 +1,12 @@
 name: Native and embedded remote testing
 
 on:
-  push:
-    branches: [ main, develop ]
+  # push:
+  #   branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
-    types: [ opened, edited, synchronize]
+    # types: [ opened, edited, synchronize]
+    types: [ opened, edited]
 
 jobs:
   native_tasks:
