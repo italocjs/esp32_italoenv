@@ -5,8 +5,8 @@ on:
   #   branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
-    # types: [ opened, edited, synchronize]
-    types: [ opened, edited]
+    types: [ opened, edited, synchronize]
+    # types: [ opened, edited]
 
 jobs:
   native_tasks:
