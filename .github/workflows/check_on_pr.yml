@@ -19,6 +19,7 @@ jobs:
     # docker build -t italocjs/track_env:latest .
     # Push the image (but to your own repo, you can change the name)
     # docker push italocjs/track_env:latest
+    #env updated
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
