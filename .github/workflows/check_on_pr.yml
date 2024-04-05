@@ -1,17 +1,18 @@
 name: Native and embedded remote testing
 
 on:
-  push:
-    branches: [ main, develop ]
+  # push:
+  #   branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
     types: [ opened, edited, synchronize]
+    # types: [ opened, edited]
 
 jobs:
   native_tasks:
     name: Native environment checks
     runs-on: ubuntu-latest
-    container: italocjs/track_env:latest
+    container: italocjs/track_env:latest #update here if you change the base environment or anything in platformio.ini, make sure to build and upload image too!
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
@@ -21,10 +22,10 @@ jobs:
           key: ${{ runner.os }}-pio   
 
       - name: Native build
-        run: pio run -e native
+        run: cd app/ && pio run -e native
 
       - name: Native test
-        run: pio test -e native
+        run: cd app/ && pio test -e native
 
   esp32dev_tasks:
     name: ESP32DEV environment checks
@@ -42,10 +43,10 @@ jobs:
         env: 
           PLATFORMIO_AUTH_TOKEN: ${{ secrets.PLATFORMIO_AUTH_TOKEN }}
           ESP32: true
-        run: pio remote --agent raspberrypi test -e esp32dev --upload-port /dev/ttyUSB0
+        run: cd app/ && pio remote --agent raspberrypi test -e esp32dev --upload-port /dev/ttyUSB0
 
       - name: esp32dev build and flash remote
         env: 
           PLATFORMIO_AUTH_TOKEN: ${{ secrets.PLATFORMIO_AUTH_TOKEN }}
           ESP32: true
-        run: pio remote --agent raspberrypi run -e esp32dev -t upload --upload-port /dev/ttyUSB0
+        run: cd app/ && pio remote --agent raspberrypi run -e esp32dev -t upload --upload-port /dev/ttyUSB0

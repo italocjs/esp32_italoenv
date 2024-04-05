@@ -1,60 +1,53 @@
 # README
-This is a sample of how to integrate CICD with esp32 development, this repository can be started as a docker container containing the required tools, or it can be used as an vscode devcontainer (open vscode in the folder, click on reopen as container) to automatically install an useful extension for task buttons.
+This is a sample of how to integrate CICD with esp32 development. This repository can be started as a docker container containing the required tools, or it can be used as a VSCode devcontainer (open VSCode in the folder, click on reopen as container) to automatically load the environment and install useful extensions for task buttons.
 
 ## Features:
 - ESPIDF + Arduino frameworks
 - Easy menuconfig access
 - Example of how to use custom board (ex simovatrack130)
+- Task buttons for easy access to common tasks (defined in `.vscode/settings.json`)
+  - Build, run, and test native code
+  - Build, flash, and test esp32dev code
+  - Monitor serial port with decoding tools
+  - Update documentation using Doxygen
 
 ### Currently working:
-- arduino framework functions
+- Arduino framework functions
 - esp-idf framework functions
-- build, run and test native code
-- build, flash and test esp32dev code.
+- Build, run, and test native code
+- Build, flash, and test esp32dev code
+- Build doxygen documentation with prettyfied css layer
 
 ### Not working:
-- under docker, c++ extension for vscode is unable to locate arduino.h but compiles ok
-- under docker + windows, usb ports are hard to access, you might want to install platformio on the host an run vscode directly on windows, to access the COM PORT for local build and testing
+- Under docker, C++ extension for VSCode is unable to locate `arduino.h` but compiles just fine. *Help wanted here! i've been unable to setup this yet and is very useful*
+- Under docker + Windows, USB ports are hard to access. You might want to install PlatformIO on the host and run VSCode directly on Windows to access the COM PORT for local build and testing.  to run PIO under the host, you can open the folder locally instead of as an container, install the extension platformio and let it automatically download all dependencies.   You shall then have access to the PIO tools directly under windows host.
 
-## To setup the remote testing, check:
-- how to connect to a remote device.md
-- how_to_setup_raspberry_remote.md
+## Setup
 
-## Dont forget to set the PLATFORMIO_AUTH_TOKEN on github actions with your actual key!
-otherwise the actions will not be able to login to the remote device 
+### Remote Testing
+To set up remote testing, check:
+- [`How to connect to remote device using pio remote`](docs\connecting_to_remote.md)
+- [`How to setup remote server using pio remote and raspberry`](docs\how_to_setup_raspberry_remote.md)
 
-## Dependencies
+Don't forget to set the `PLATFORMIO_AUTH_TOKEN` on GitHub Actions with your actual pio account token! Otherwise, the actions will not be able to log in to the remote device.
+When running remote build on local pc, you must either login to you account or use a token too
 
-This code uses italocjs/track_env:latest, which is built to speedup compilation process, but might be necessary to update it to your project.
-```
-# Use Python 3 as the base image
-FROM python:3 as base
+### Updating the Base Image
+If you need to update the base image (`italocjs/track_env:latest`), you can use the `build_image.py` script. This script automates the process of building and pushing Docker images, which is particularly useful for GitHub Actions as it allows for the creation of pre-built environments, significantly reducing setup times by pre-downloading all necessary requisites.
 
-# Install PlatformIO
-RUN pip install platformio
+- [`How to build new image`](docs\building_new_image.md)
 
-# Preinstall the 'native' platform
-RUN platformio platform install native
+# Final notes:
+This base repository has been created to help me setup my development environment. Feel free to use it as a base for your own projects.
+There is absolutely NO WARRANTY, use at your own risk. if you end up burning your computer, don't blame me, blame yourself.
 
-# Preinstall the 'espressif32' platform and the specific Arduino framework version
-RUN platformio platform install espressif32 --with-package framework-arduinoespressif32@https://github.com/italocjs/arduino-esp32.git#idf-release/v4.4
-RUN pio platform install espressif32 --with-package=toolchain-xtensa-esp32 --with-package=toolchain-esp32ulp --with-package=framework-arduinoespressif32 --with-package=framework-espidf --with-package=tool-esptoolpy --with-package=tool-cmake --with-package=tool-ninja
+This environment introduces a few new concepts for the new "arduino programmer" which is used to program in Arduino IDE:
+- using vscode as editor and platformio as IDE
+- using github to keep track of changes
+- using github actions for CI/CD
+- using docker to isolate the environment
+- using unitary tests in both "fake" (native) and "real" (esp32) environments.
 
-# Preinstall the 'googletest' library
-RUN platformio lib -g install googletest
+Author: Italo C J Soares (italocjs@live.com)
 
-# Copy a basic code so we can run the build
-COPY minimal_source/ /workspace/
-WORKDIR /workspace
 
-# Run a PlatformIO build for each environment to download dependencies
-# This step assumes your platformio.ini is configured for esp32dev and native environments
-
-RUN platformio run -e native
-RUN platformio run -e esp32dev
-
-# This part of the process will NOT test agains any target, as this is meant to be an shared base image
-
-# Clean up unnecessary files to keep the image size down
-RUN rm -rf /workspace
-```
