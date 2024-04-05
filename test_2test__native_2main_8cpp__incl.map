@@ -1,0 +1,10 @@
+<map id="test/test_native/main.cpp" name="test/test_native/main.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="31,5,198,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,160,99,186"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,33,80,80,68,114,60,146,54,145,63,112,75,78,104,30"/>
+<area shape="rect" id="Node000003" href="$test__native_2test__temperature__sensor_8h.html" title=" " alt="" coords="90,79,265,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="127,29,159,65,155,69,123,33"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="160,107,85,154,83,149,157,103"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="123,153,285,193"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="184,104,195,137,190,139,179,106"/>
+</map>

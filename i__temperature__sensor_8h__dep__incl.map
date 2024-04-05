@@ -1,0 +1,13 @@
+<map id="lib/sample_interface/i_temperature_sensor.h" name="lib/sample_interface/i_temperature_sensor.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="248,5,409,46"/>
+<area shape="rect" id="Node000002" href="$mock__temperature__sensor_8cpp.html" title=" " alt="" coords="5,94,209,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,54,158,96,156,91,263,49"/>
+<area shape="rect" id="Node000004" href="$real__temperature__sensor_8cpp.html" title=" " alt="" coords="232,94,425,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="331,62,331,94,326,94,326,62"/>
+<area shape="rect" id="Node000005" href="$temperature__service_8h.html" title=" " alt="" coords="449,94,602,135"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="388,50,482,91,480,96,386,55"/>
+<area shape="rect" id="Node000003" href="$temperature__manager_8h.html" title=" " alt="" coords="248,183,409,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="172,138,279,180,277,185,170,143"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="331,150,331,182,326,182,326,150"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="468,144,374,185,372,180,466,139"/>
+</map>
