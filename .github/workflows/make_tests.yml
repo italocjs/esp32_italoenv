@@ -1,4 +1,4 @@
-name: Native and embedded remote testing
+name: make_tests
 
 on:
   # push:
