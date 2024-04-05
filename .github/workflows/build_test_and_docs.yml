@@ -6,8 +6,8 @@ on:
     types: [ opened, edited, synchronize]
 
 jobs:
-  native_tasks:
-    name: Native environment checks
+  build_and_test:
+    name: Build and test the code
     runs-on: ubuntu-latest
     container: italocjs/track_env:latest
     steps:
@@ -23,19 +23,6 @@ jobs:
 
       - name: Native test
         run: cd app/ && pio test -e native
-
-  esp32dev_tasks:
-    name: ESP32DEV environment checks
-    needs: native_tasks
-    runs-on: ubuntu-latest
-    container: italocjs/track_env:latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: |
-            /root/.platformio/.cache
-          key: ${{ runner.os }}-pio   
 
       - name: esp32dev remote test
         env: 
@@ -53,8 +40,10 @@ jobs:
 
   doxygen:
     name: Generate Doxygen Documentation
-    needs: esp32dev_tasks
+    needs: build_and_test
     runs-on: ubuntu-latest
+    permissions:
+        contents: write #needed for the Doxygen action
     
     steps:
     - uses: actions/checkout@v2
