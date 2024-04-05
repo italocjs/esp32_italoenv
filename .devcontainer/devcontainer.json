@@ -22,6 +22,35 @@
 //     // The rest of your configuration...
 // }
 
+// ##works 2
+// {
+//     "name": "Existing Dockerfile",
+//     "build": {
+//         "context": "..",
+//         "dockerfile": "../Dockerfile"
+//     },
+//     "customizations": {
+//         "vscode": {
+//             "extensions": [
+//                 "spencerwmiles.vscode-task-buttons"
+//             ],
+//             "dev.containers.defaultExtensions": [
+//                 "spencerwmiles.vscode-task-buttons"
+//                 // "eamodio.gitlens"
+//             ],
+//             "settings": {
+//                 "terminal.integrated.cwd": "/app"
+//             }
+//         }
+//     },
+//     "mounts": [
+//         "source=${localWorkspaceFolder}/app,target=/app,type=bind,consistency=cached"
+//     ],
+//     "workspaceFolder": "/app"
+//     // "remoteUser": "devcontainer"
+//     // The rest of your configuration...
+// }
+
 {
     "name": "Existing Dockerfile",
     "build": {
@@ -33,19 +62,13 @@
             "extensions": [
                 "spencerwmiles.vscode-task-buttons"
             ],
-            "dev.containers.defaultExtensions": [
-                "spencerwmiles.vscode-task-buttons"
-                // "eamodio.gitlens"
-            ],
             "settings": {
-                "terminal.integrated.cwd": "/app"
+                "terminal.integrated.cwd": "/workspace"
             }
         }
     },
     "mounts": [
-        "source=${localWorkspaceFolder}/app,target=/app,type=bind,consistency=cached"
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
     ],
-    "workspaceFolder": "/app"
-    // "remoteUser": "devcontainer"
-    // The rest of your configuration...
+    "workspaceFolder": "/workspace"
 }

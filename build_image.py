@@ -36,19 +36,24 @@ def print_system_info():
 
 def run_command(command):
     """
-    Executes a shell command and prints 'Success' in green if the command was executed successfully,
-    or 'Failure' in red if the command failed.
+    Executes a shell command and returns True if the command was executed successfully,
+    or False if the command failed. Also prints 'Success' in green for success,
+    or 'Failure' in red for failure.
     """
     try:
         subprocess.run(command, shell=True, check=True, text=True)
         print(GREEN + 'Success' + RESET)
+        return True
     except subprocess.CalledProcessError:
         print(RED + 'Failure' + RESET)
+        return False
+
 
 def main():
     """
-    Main function to check Docker installation, print system info, build and push a Docker image.
-    The Dockerfile location, repository name, and version are configurable at the start of the script.
+    Main function to check Docker installation, print system info, build and push a Docker image
+    only if the build is successful. The Dockerfile location, repository name, and version
+    are configurable at the start of the script.
     """
     if not is_docker_installed():
         print(YELLOW + 'Docker is not installed. Please install Docker to proceed.' + RESET)
@@ -59,12 +64,15 @@ def main():
     # Build the Docker image
     build_command = f'docker build -t {REPOSITORY_NAME}:{VERSION} {DOCKERFILE_LOCATION}'
     print("Building Docker image...")
-    run_command(build_command)
+    build_success = run_command(build_command)
 
-    # Push the Docker image
-    push_command = f'docker push {REPOSITORY_NAME}:{VERSION}'
-    print("Pushing Docker image...")
-    run_command(push_command)
+    if build_success:
+        # Push the Docker image only if build was successful
+        push_command = f'docker push {REPOSITORY_NAME}:{VERSION}'
+        print("Pushing Docker image...")
+        run_command(push_command)
+    else:
+        print(RED + "Build failed, not pushing the image." + RESET)
 
 if __name__ == '__main__':
     main()
