@@ -29,8 +29,8 @@ jobs:
       with:
         # Path to Doxyfile
         # doxyfile-path: "./Doxyfile" # default is ./Doxyfile
-        working-directory: "app" # default is .
-        doxyfile-path: ".Doxyfile" # default is ./Doxyfile
+        working-directory: "app/" # default is .
+        doxyfile-path: "app/Doxyfile" # default is ./Doxyfile
         # Working directory
     
     - name: Deploy
