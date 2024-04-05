@@ -17,29 +17,29 @@ RUN apt-get install -y \
 
 RUN apt install doxygen -y
 
-RUN echo "apt updated, git installed, python installed, doxygen installed"
+RUN pip install platformio
 
-# Set the working directory in the container
+RUN echo "apt updated, git installed, python installed, doxygen installed, platformio installed"
+
+# Copy the content of /app on local to container, and cd to it
+COPY app/ /app/
 WORKDIR /app
 RUN echo "Working directory set to /app, we are at $(pwd), with user $(whoami), and these are the folder list $(ls -la)"
 
-# Install platformio
-RUN pip install platformio
+RUN pio pkg install
+RUN echo "All packages preinstalled in this cache layer"
+
+RUN pio pkg install -g -t "tool-esptoolpy@1.40501.0"
+RUN pio pkg install -g -t "tool-cmake@3.16.4"
+RUN pio pkg install -g -t "tool-ninja@1.7.1"
+RUN pio pkg install -g -t "tool-scons@4.40700.0"
+RUN pio pkg install -g -l "googletest@1.12.1"
+RUN echo "Extra packages preinstalled in this cache layer"
 
 # Copy the platformio.ini file into the container at /app
-COPY platformio.ini /app/platformio.ini
-COPY boards/ /app/boards/
-RUN echo "Just copied platformio.ini and boards to /app, we are at $(pwd), with user $(whoami), and these are the folder list $(ls -la)"
-RUN pio pkg install
-RUN echo "will you wooooooooooooooork?"
+RUN echo "You should now have a pre-downloaded image with all tools and packages installed"
 
 
-# preinstall all project dependencies specified in platformio.ini
-
-
-# # Add the script to check Python and PIO versions
-# # COPY check_versions.sh /app/check_versions.sh
-# RUN chmod +x ./check_versions.sh
 
 
 CMD ["/bin/bash"]

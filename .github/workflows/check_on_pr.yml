@@ -12,14 +12,7 @@ jobs:
   native_tasks:
     name: Native environment checks
     runs-on: ubuntu-latest
-    container: italocjs/track_env:latest
-    #italocjs/track_env:latest is used to provide a pre-loaded environment with the platformio packages preinstalled
-    #if you change the board or the package requirements in platformio.ini you should build, upload and replace the image used here.
-    # Use this to build the image based on the current Dockerfile on root folder
-    # docker build -t italocjs/track_env:latest .
-    # Push the image (but to your own repo, you can change the name)
-    # docker push italocjs/track_env:latest
-    #env updated
+    container: italocjs/track_env:latest #update here if you change the base environment or anything in platformio.ini, make sure to build and upload image too!
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
