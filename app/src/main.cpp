@@ -17,7 +17,7 @@
 int main()
 {
 	abstracted_main();
-	return 0;
+	return 0; //Testando 2
 }
 #endif
 
