@@ -11,7 +11,7 @@ on:
     branches: [ main, develop ]
 
 permissions:
-    contents: write
+    contents: write #needed for the Doxygen action
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
