@@ -4,7 +4,11 @@
 
 # ESP32 Development Environment Integration Guide
 
-This is a sample development environment for ESP32 projects, leveraging a variety of tools to ensure a smooth and consistent development process over any platform (such as Windows, Linux, MacOS, Containers, github actions, etc) with automatic testing on remote devices and documentation generation.
+This is a sample development environment for ESP32 projects, leveraging a variety of tools to ensure a smooth and consistent development process over any platform (such as Windows, Linux, MacOS, Containers, github actions, etc), unitary testing with remote devices and native environment and documentation generation.
+
+![Sample of environment](docs/images/environment.png)
+
+
 
 ## Features
 
@@ -35,7 +39,7 @@ This is a sample development environment for ESP32 projects, leveraging a variet
 
 ## Setup
 
-### Remote Testing
+### Remote programming our device
 To set up remote testing, check:
 - [`How to connect to remote device using pio remote`](docs\connecting_to_remote.md)
 - [`How to setup remote server using pio remote and raspberry`](docs\setup_raspberry_remote.md)
@@ -71,4 +75,18 @@ I plan on making a video / post blog about this later to share with my coworkers
 
 Author: Italo C J Soares (italocjs@live.com)
 
+# Images
+### This is my current server mount
 
+<img src="docs/images/my_server.jpeg" width="300">
+<img src="docs/images/my_server_2.jpeg" width="300">
+
+### Output of this repository automatic build:
+
+<img src="docs/images/local_testing.png" width="500">
+
+<img src="docs/images/remote_testing.png" width="500">
+
+### Complete example on how to abstract real and mock hardware
+
+<img src="docs/images/sample.png" width="500">
