@@ -1,13 +1,14 @@
-# This is a basic workflow to help you get started with Actions, it can run automatically, but i will use it in the same file as the other tests to make sure i onpy up
-
 name: make_doxygen
 
 on:
   push:
-    branches: [ main ] # only run if pushed to main
+    branches: [ main ]
+  pull_request:
+    branches: [ main, develop ]
+    types: [ opened, edited, synchronize]
 
 permissions:
-    contents: write # needed for the Doxygen action
+  contents: write # needed for the Doxygen action
   
 jobs:
   build:
@@ -23,6 +24,7 @@ jobs:
         working-directory: "app/" # default is .
     
     - name: Deploy
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}

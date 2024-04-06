@@ -1,3 +1,7 @@
+<!-- [![Actions Status](https://github.com/{user}/{repo}/workflows/{action}/badge.svg)](https://github.com/{user}/{repo}/actions) -->
+[![Build and testing](https://github.com/italocjs/esp32_italoenv/workflows/make_tests/badge.svg)](https://github.com/italocjs/make_tests/actions)
+[![Documentation](https://github.com/italocjs/esp32_italoenv/workflows/make_doxygen/badge.svg)](https://github.com/italocjs/make_doxygen/actions)
+
 # README
 This is a sample of how to integrate CICD with esp32 development. This repository can be started as a docker container containing the required tools, or it can be used as a VSCode devcontainer (open VSCode in the folder, click on reopen as container) to automatically load the environment and install useful extensions for task buttons.
 
@@ -36,6 +40,10 @@ When running remote build on local pc, you must either login to you account or u
 If you need to update the base image (`italocjs/track_env:latest`), you can use the `build_image.py` script. This script automates the process of building and pushing Docker images, which is particularly useful for GitHub Actions as it allows for the creation of pre-built environments, significantly reducing setup times by pre-downloading all necessary requisites.
 
 - [`How to build new image`](docs\building_new_image.md)
+
+### Configuring the Doxygen
+- Recommended to use the doxygen wizard
+- Doxygen settings are located in the `app/Doxyfile`
 
 # Final notes:
 This base repository has been created to help me setup my development environment. Feel free to use it as a base for your own projects.
