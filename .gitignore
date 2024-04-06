@@ -3,9 +3,8 @@
 .platformio/
 .vscode/
 
-# Also ignore the doxygen output folder for now, 
-# but we must copy the output somewhere visible later
-doxygen_out/
+# ignoring doxygen_out, as it generate too many files.  We could improve it by compacting it somehow, or maybe using another documentation engine 
+app/doxygen_out/
 
 # do NOT ignore the files .vscode/tasks.json and .vscode/settings.json
 # these are important for the development environment and will
