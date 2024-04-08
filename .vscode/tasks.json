@@ -1,0 +1,86 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "native_build",
+            "type": "shell",
+            "command": "pio run -e native",
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/app"
+              },
+            "problemMatcher": []
+        },
+        {
+            "label": "native_run",
+            "type": "shell",
+            "command": "cd app/ && pio run -e native -t exec",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "native_test",
+            "type": "shell",
+            "command": "cd app/ && pio test -e native",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "esp32dev_build",
+            "type": "shell",
+            "command": "cd app/ && pio run -e esp32dev",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "esp32dev_flash",
+            "type": "shell",
+            "command": "cd app/ && pio run -e esp32dev -t upload",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "esp32dev_test",
+            "type": "shell",
+            "command": "cd app/ && pio test -e esp32dev",
+            "group": "test",
+            "problemMatcher": []
+        },
+                {
+            "label": "local_monitor",
+            "type": "shell",
+            "command": "cd app/ && pio device monitor --baud 115200 --filter esp32_exception_decoder --filter send_on_enter",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "esp32dev_flash_remote",
+            "type": "shell",
+            "command": "cd app/ && pio remote --agent raspberrypi run -e esp32dev -t upload --upload-port /dev/ttyUSB0",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "esp32dev_test_remote",
+            "type": "shell",
+            "command": "cd app/ && pio remote --agent raspberrypi test -e esp32dev --upload-port /dev/ttyUSB0 -vvv",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "remote_monitor",
+            "type": "shell",
+            "command": "cd app/ && pio remote --agent raspberrypi device monitor --baud 115200 --filter esp32_exception_decoder --filter send_on_enter --port /dev/ttyUSB0",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "generate_doxygen",
+            "type": "shell",
+            "command": "cd app/ && python scripts/build_doxygen.py",
+            "group": "none",
+            "problemMatcher": []
+        }
+
+    ]
+}

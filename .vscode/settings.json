@@ -1,0 +1,60 @@
+{
+    "VsCodeTaskButtons.showCounter": false,
+    "VsCodeTaskButtons.tasks": [
+        {
+            "label": "$(terminal) Build",
+            "task": "native_build",
+            "tooltip": "Build native code"
+        },
+        {
+            "label": "$(terminal) Run",
+            "task": "native_run",
+            "tooltip": "Build and run native code"
+        },        
+        {
+            "label": "$(terminal) Test",
+            "task": "native_test",
+            "tooltip": "Perform test on native code"
+        },        
+        {
+            "label": "$(chip) Build",
+            "task": "esp32dev_build",
+            "tooltip": "Build esp32dev code"
+        },
+        {
+            "label": "$(flame) Flash",
+            "task": "esp32dev_flash",
+            "tooltip": "Flash esp32dev code to the device"
+        },
+        {
+            "label": "$(flame) Test",
+            "task": "esp32dev_test",
+            "tooltip": "Flash ESP32 test to the device"
+        },
+        {
+            "label": "$(terminal) Monitor",
+            "task": "local_monitor",
+            "tooltip": "Monitor serial port at a specific port with decoding tools"
+        },
+        {
+            "label": "$(flame)$(cloud-upload) flash remote",
+            "task": "esp32dev_flash_remote",
+            "tooltip": "Flash esp32dev code to the remote device"
+        },
+        {
+            "label": "$(flame)$(cloud-upload) test remote",
+            "task": "esp32dev_test_remote",
+            "tooltip": "Perform test on esp32dev code to the remote device"
+        },
+        {
+            "label": "$(terminal)$(cloud) Monitor Remote",
+            "task": "remote_monitor",
+            "tooltip": "Open the serial port monitor with decoding tools"
+        },
+        {
+            "label": "$(book) Update docs",
+            "task": "generate_doxygen",
+            "tooltip": "Update the /app doxygen documentation"
+        },
+    ]
+}

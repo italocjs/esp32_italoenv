@@ -1,0 +1,48 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "C:/github/esp32_italoenv/app/include",
+                "C:/github/esp32_italoenv/app/src",
+                "C:/github/esp32_italoenv/app/lib/sample_interface",
+                "C:/github/esp32_italoenv/app/.pio/libdeps/native/googletest",
+                "C:/github/esp32_italoenv/app/.pio/libdeps/native/googletest/googlemock",
+                "C:/github/esp32_italoenv/app/.pio/libdeps/native/googletest/googlemock/include",
+                "C:/github/esp32_italoenv/app/.pio/libdeps/native/googletest/googletest",
+                "C:/github/esp32_italoenv/app/.pio/libdeps/native/googletest/googletest/include",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "C:/github/esp32_italoenv/app/include",
+                    "C:/github/esp32_italoenv/app/src",
+                    "C:/github/esp32_italoenv/app/lib/sample_interface",
+                    "C:/github/esp32_italoenv/app/.pio/libdeps/native/googletest",
+                    "C:/github/esp32_italoenv/app/.pio/libdeps/native/googletest/googlemock",
+                    "C:/github/esp32_italoenv/app/.pio/libdeps/native/googletest/googlemock/include",
+                    "C:/github/esp32_italoenv/app/.pio/libdeps/native/googletest/googletest",
+                    "C:/github/esp32_italoenv/app/.pio/libdeps/native/googletest/googletest/include",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=60114",
+                "MY_PROJECT_VERSION=10",
+                ""
+            ],
+            "cppStandard": "c++11",
+            "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+            "compilerArgs": [
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}

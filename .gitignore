@@ -1,7 +1,7 @@
 # Ignore cache folder, we dont want uploading it to the repo
 .pio/
 .platformio/
-.vscode/
+# .vscode/ #do NOT ignore this folder, task buttons require them
 
 # ignoring doxygen_out, as it generate too many files.  We could improve it by compacting it somehow, or maybe using another documentation engine 
 app/doxygen_out/
